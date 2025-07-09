@@ -44,7 +44,7 @@ Sekarang kita akan membuat tabel film dan admin berdasarkan model yang ada di ko
    Perintah ini akan membuat semua tabel. Setelah selesai, keluar dari shell dengan mengetik exit().
 
 Langkah 6: Buat Akun Admin Pertama
-Database masih kosong, jadi teman Anda tidak akan bisa login. Buat satu akun admin pertama melalui shell.
+Database masih kosong, jadi Anda tidak akan bisa login. Buat satu akun admin pertama melalui shell.
 1. Jalankan lagi flask shell.
    - flask shell
 2. Jalankan perintah Python berikut untuk membuat admin:
