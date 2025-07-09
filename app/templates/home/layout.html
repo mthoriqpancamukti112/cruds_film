@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>{% block title %}FilmKu{% endblock %}</title>
+
+    <!-- Favicons -->
+    <link
+      href="{{ url_for('static', filename='frontend/assets/img/bg.png') }}"
+      rel="icon"
+    />
+    <link
+      href="{{ url_for('static', filename='frontend/assets/img/bg.png') }}"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto+Slab:wght@400;700&family=Merriweather:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="{{ url_for('static', filename='frontend/assets/vendor/bootstrap/css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='frontend/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='frontend/assets/vendor/aos/aos.css') }}"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS File -->
+    <link
+      href="{{ url_for('static', filename='frontend/assets/css/main.css') }}"
+      rel="stylesheet"
+    />
+
+    <style>
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        overflow: hidden;
+        background: #fbf7f3; /* Sesuaikan dengan background color Anda */
+        transition: all 0.6s ease-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Hapus spinner CSS bawaan */
+      #preloader:before {
+        display: none;
+      }
+
+      /* Tambahkan logo sebagai background preloader */
+      #preloader:after {
+        content: "";
+        display: block;
+        width: 300px; /* Atur lebar logo */
+        height: 300px; /* Atur tinggi logo */
+        background-image: url("{{ url_for('static', filename='frontend/assets/img/screen.svg') }}");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        animation: animate-preloader-logo 1.5s ease-in-out infinite;
+      }
+
+      /* Animasi sederhana untuk logo (pulse) */
+      @keyframes animate-preloader-logo {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(0.9);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  </head>
+
+  <body class="index-page">
+    <header
+      id="header"
+      class="header d-flex align-items-center position-relative"
+    >
+      <div
+        class="container-fluid position-relative d-flex align-items-center justify-content-between"
+      >
+        <a
+          href="{{ url_for('main.index') }}"
+          class="logo d-flex align-items-center me-auto me-xl-0"
+        >
+          <img
+            src="{{ url_for('static', filename='frontend/assets/img/logo.png') }}"
+            alt="Logo FilmKu"
+          />
+          <h1 class="sitename">FilmKu</h1>
+        </a>
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            {% if current_user.is_authenticated %}
+            <!-- Jika admin sudah login -->
+            <li><a href="{{ url_for('admin.dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            {% else %}
+            <!-- Jika belum login (pengunjung biasa) -->
+            <li>
+              <a href="{{ url_for('main.index') }}" class="active">Home</a>
+            </li>
+            <li><a href="{{ url_for('auth.login') }}">Login Admin</a></li>
+            {% endif %}
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      {% block content %}
+      <!-- Konten Halaman Utama Akan Dimuat di Sini -->
+      {% endblock %}
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span>
+          <strong class="px-1 sitename">FilmKu</strong>
+          <span>All Rights Reserved</span>
+          <div class="credits">Designed by <a href="#">The Rebahan</a></div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="{{ url_for('static', filename='frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='frontend/assets/vendor/aos/aos.js') }}"></script>
+
+    <!-- Main JS File -->
+    <script src="{{ url_for('static', filename='frontend/assets/js/main.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<svg width="300" height="180" viewBox="0 0 600 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* Efek glowing kamera */
+    .glow {
+      stroke: #00f7ff;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 5px #00f7ff);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { filter: drop-shadow(0 0 3px #00f7ff); }
+      100% { filter: drop-shadow(0 0 12px #00f7ff); }
+    }
+
+    /* Reel fade + spin */
+    .reel {
+      animation: spin 4s linear infinite, fadeInOut 3s ease-in-out infinite;
+      transform-origin: 120px 180px;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* Tombol play slide in */
+    .slide-in {
+      transform: translateX(-50px);
+      animation: slideIn 1.5s forwards ease-out;
+    }
+
+    @keyframes slideIn {
+      to { transform: translateX(0); }
+    }
+  </style>
+
+  <!-- Reel (film roll) -->
+  <g class="reel">
+    <circle cx="120" cy="180" r="80" fill="#0d1b2a"></circle>
+    <circle cx="120" cy="180" r="10" fill="#1abc9c"></circle>
+    <circle cx="120" cy="110" r="15" fill="#000"></circle>
+    <circle cx="190" cy="180" r="15" fill="#000"></circle>
+    <circle cx="120" cy="250" r="15" fill="#000"></circle>
+    <circle cx="50" cy="180" r="15" fill="#000"></circle>
+  </g>
+
+  <!-- Kamera dengan glowing -->
+  <g class="glow">
+    <rect x="200" y="110" width="220" height="140" rx="20" ry="20" fill="#0d1b2a"></rect>
+    <rect x="240" y="70" width="80" height="40" rx="10" ry="10" fill="#0d1b2a"></rect>
+    <polygon points="420,130 500,180 420,230" fill="#0d1b2a"></polygon>
+  </g>
+
+  <!-- Tombol play slide-in -->
+  <polygon class="slide-in" points="260,145 260,215 330,180" fill="#ffffff"></polygon>
+</svg>

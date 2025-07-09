@@ -1,0 +1,35 @@
+<div class="row gy-4">
+  {% if films %} {% for film in films %}
+  <div
+    class="col-lg-4 col-md-6"
+    data-aos="fade-up"
+    data-aos-delay="{{ 100 * loop.index }}"
+  >
+    <div class="related-book-card h-100">
+      <div class="book-image">
+        <img
+          src="{{ url_for('static', filename='uploads/' + film.gambar) if film.gambar else 'https://placehold.co/400x600/6c757d/ffffff?text=' + film.judul|urlencode }}"
+          alt="Poster {{ film.judul }}"
+          class="img-fluid"
+        />
+        <div class="book-category">{{ film.genre or 'N/A' }}</div>
+      </div>
+      <div class="book-info">
+        <h3>{{ film.judul }}</h3>
+        <div class="book-meta">
+          <span><i class="bi bi-calendar3"></i> {{ film.tahun_rilis }}</span>
+          <span><i class="bi bi-person-video3"></i> {{ film.sutradara }}</span>
+        </div>
+        <p class="mt-2">
+          {{ film.sinopsis|truncate(100) if film.sinopsis else 'Sinopsis tidak
+          tersedia.' }}
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <div class="col-12 text-center pt-3">
+    <p>Film yang Anda cari tidak ditemukan.</p>
+  </div>
+  {% endif %}
+</div>

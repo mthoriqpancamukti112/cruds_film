@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>{% block title %}Dashboard{% endblock %} - Admin Film</title>
+
+    <!-- Favicons -->
+    <link
+      href="{{ url_for('static', filename='backend/assets/img/bg.png') }}"
+      rel="icon"
+    />
+    <link
+      href="{{ url_for('static', filename='backend/assets/img/logo.png') }}"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="{{ url_for('static', filename='backend/assets/vendor/bootstrap/css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='backend/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='backend/assets/vendor/boxicons/css/boxicons.min.css') }}"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS File -->
+    <link
+      href="{{ url_for('static', filename='backend/assets/css/style.css') }}"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  </head>
+
+  <body>
+    <!-- Include Navbar -->
+    {% include 'backend/navbar.html' %}
+
+    <!-- Include Sidebar -->
+    {% include 'backend/sidebar.html' %}
+
+    <!-- Main Content Block -->
+    <main id="main" class="main">
+      {% block content %}
+      <!-- Konten spesifik per halaman akan dimuat di sini -->
+      {% endblock %}
+    </main>
+    <!-- End #main -->
+
+    <!-- Include Footer -->
+    {% include 'backend/footer.html' %}
+
+    <!-- Vendor JS Files -->
+    <script src="{{ url_for('static', filename='backend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ url_for('static', filename='backend/assets/js/main.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% block scripts %}
+    <!-- Script tambahan per halaman bisa dimuat di sini -->
+    {% endblock %}
+  </body>
+</html>

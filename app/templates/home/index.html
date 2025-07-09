@@ -1,0 +1,56 @@
+{% extends 'home/layout.html' %} {% block content %}
+
+<style>
+  /* Menggunakan ID #film-catalog untuk meningkatkan spesifisitas CSS */
+  #film-catalog .related-book-card .book-image {
+    height: 450px; /* Bisa sesuaikan tinggi ini */
+    padding: 0; /* Hapus padding di sekitar gambar */
+    display: block; /* Ubah dari grid ke block */
+  }
+
+  #film-catalog .related-book-card .book-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ini akan membuat gambar menutupi area, memotong jika perlu */
+    transition: transform 0.5s ease;
+  }
+
+  #film-catalog .related-book-card:hover .book-image img {
+    transform: scale(1.05); /* Pertahankan efek zoom saat hover */
+  }
+</style>
+
+<!-- Film Catalog Section -->
+<section id="film-catalog" class="related-books section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Katalog Film</h2>
+    <p>Jelajahi koleksi film terbaru dan terpopuler kami.</p>
+  </div>
+  <!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <!-- Kolom Pencarian -->
+    <div class="row mb-4">
+      <div class="col-md-8 offset-md-2">
+        <input
+          type="search"
+          class="form-control form-control-lg"
+          name="keyword"
+          placeholder="🔍 Ketik judul film untuk mencari..."
+          hx-post="{{ url_for('main.cari_film') }}"
+          hx-trigger="keyup changed delay:500ms"
+          hx-target="#hasil-film"
+          hx-swap="innerHTML"
+          style="border-radius: 50px; font-size: 16px"
+        />
+      </div>
+    </div>
+    <!-- End Kolom Pencarian -->
+
+    <!-- Area untuk menampilkan hasil -->
+    <div id="hasil-film">{% include 'home/_film_cards.html' %}</div>
+  </div>
+</section>
+<!-- /Film Catalog Section -->
+{% endblock %}

@@ -1,0 +1,67 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Gambar</th>
+      <th scope="col">Judul</th>
+      <th scope="col">Sutradara</th>
+      <th scope="col">Tahun</th>
+      <th scope="col">Genre</th>
+      <th scope="col" width="15%">Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if films %} {% for film in films %}
+    <tr>
+      <th scope="row">{{ loop.index }}</th>
+      <td>
+        {% if film.gambar %}
+        <img
+          src="{{ url_for('static', filename='uploads/' + film.gambar) }}"
+          alt="{{ film.judul }}"
+          width="50"
+          style="border-radius: 10px"
+        />
+        {% else %}
+        <img
+          src="https://placehold.co/80x120?text=N/A"
+          alt="No Image"
+          width="50"
+        />
+        {% endif %}
+      </td>
+      <td>{{ film.judul }}</td>
+      <td>{{ film.sutradara }}</td>
+      <td>{{ film.tahun_rilis }}</td>
+      <td>{{ film.genre }}</td>
+      <td>
+        <a
+          href="{{ url_for('admin.edit_film', film_id=film.id) }}"
+          class="btn btn-sm btn-warning"
+          title="Edit"
+          ><i class="bi bi-pencil-square"></i
+        ></a>
+        <form
+          id="form-hapus-{{ film.id }}"
+          method="POST"
+          action="{{ url_for('admin.hapus_film', film_id=film.id) }}"
+          style="display: inline"
+        >
+          <button
+            type="button"
+            class="btn btn-sm btn-danger btn-hapus"
+            data-id="{{ film.id }}"
+            title="Hapus"
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %} {% else %}
+    <tr>
+      <td colspan="6" class="text-center">Film tidak ditemukan.</td>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>

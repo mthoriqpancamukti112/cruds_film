@@ -1,0 +1,115 @@
+{% extends 'backend/template.html' %} {% block title %} Tambah Data Admin {%
+endblock %} {% block content %}
+<div class="pagetitle">
+  <h1>Formulir Data Admin</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{{ url_for('admin.dashboard') }}">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="{{ url_for('admin.data_admin') }}">Data Admin</a>
+      </li>
+      <li class="breadcrumb-item active">Tambah</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Tambah Admin Baru</h5>
+
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if
+          messages %} {% for category, message in messages %}
+          <div
+            class="alert alert-{{ category }} alert-dismissible fade show"
+            role="alert"
+          >
+            {{ message }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+          {% endfor %} {% endif %} {% endwith %}
+
+          <form
+            class="row g-3"
+            method="POST"
+            action="{{ url_for('admin.tambah_admin') }}"
+          >
+            <div class="col-12">
+              <label for="nama" class="form-label">Nama Lengkap</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nama"
+                name="nama"
+                placeholder="Masukan nama lengkap"
+                required
+              />
+            </div>
+            <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Masukan email aktif"
+                required
+              />
+            </div>
+            <div class="col-12">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Masukan password"
+                required
+              />
+            </div>
+            <div class="col-12">
+              <label for="no_hp" class="form-label">No. Handphone</label>
+              <input
+                type="text"
+                class="form-control"
+                id="no_hp"
+                name="no_hp"
+                placeholder="Masukan nomor hp aktif"
+              />
+            </div>
+            <div class="col-12">
+              <label for="alamat" class="form-label">Alamat</label>
+              <textarea
+                name="alamat"
+                class="form-control"
+                id="alamat"
+                style="height: 100px"
+                placeholder="Masukan alamat lengkap"
+              ></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Simpan</button>
+              <button type="reset" class="btn btn-danger">Reset</button>
+              <a
+                href="{{ url_for('admin.data_admin') }}"
+                class="btn btn-secondary"
+                >Batal</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
